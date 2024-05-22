@@ -25,15 +25,9 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body>
-          <SignedOut>
-            <Button>
-              <SignInButton signUpFallbackRedirectUrl={"sign-in"} />
-            </Button>
-          </SignedOut>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
-          {children}
+          <div className="w-screen min-h-screen bg-gradient-to-r from-neutral-300 to-stone-400">
+            {children}
+          </div>
         </body>
       </html>
     </ClerkProvider>

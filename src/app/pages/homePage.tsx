@@ -1,3 +1,4 @@
+import FileUpload from "@/components/FileUpload";
 import { Button } from "@/components/ui/button";
 
 import { UserButton } from "@clerk/nextjs";
@@ -25,7 +26,7 @@ export default function HomePage() {
         </p>
         <div className="w-full mt-4">
           {isAuthenticated ? (
-            <h1>fileipload</h1>
+            <FileUpload />
           ) : (
             <Link href="/sign-in">
               <Button>

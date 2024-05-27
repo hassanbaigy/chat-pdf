@@ -9,6 +9,7 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
+import Providers from "@/components/Providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,13 +24,15 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en">
-        <body>
-          <div className="w-screen min-h-screen bg-gradient-to-r from-neutral-300 to-stone-400">
-            {children}
-          </div>
-        </body>
-      </html>
+      <Providers>
+        <html lang="en">
+          <body>
+            <div className="w-screen min-h-screen bg-gradient-to-r from-neutral-300 to-stone-400">
+              {children}
+            </div>
+          </body>
+        </html>
+      </Providers>
     </ClerkProvider>
   );
 }

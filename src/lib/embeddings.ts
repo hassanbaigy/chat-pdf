@@ -13,7 +13,6 @@ export async function getEmbeddings(text: string) {
       model: "text-embedding-ada-002",
       input: text.replace(/\n/g, ""),
     });
-    console.log(response);
     const result = await response.json();
     return result.data[0].embedding as number[];
   } catch (err) {

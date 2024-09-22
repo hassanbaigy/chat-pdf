@@ -12,8 +12,8 @@ type Props = {};
 
 const FileUpload = () => {
   const router = useRouter();
-
   const [uploading, setUploading] = useState(false);
+
   const { mutate, isLoading } = useMutation({
     mutationFn: async ({
       file_key,

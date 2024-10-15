@@ -47,7 +47,7 @@ const ChatComponent = ({ chatId }: Props) => {
     >
       {/* header */}
       <div className="sticky top-0 inset-x-0 p-2 bg-white h-fit">
-        <h3 className="text-xl font-bold">Chat</h3>
+        <h3 className="text-xl font-bold">Ask Away 💬</h3>
       </div>
 
       {/* message list */}
@@ -55,13 +55,13 @@ const ChatComponent = ({ chatId }: Props) => {
 
       <form
         onSubmit={handleSubmit}
-        className="sticky bottom-0 inset-x-0 px-2 py-4 bg-white"
+        className="sticky bottom-0 inset-x-0 px-2 py-2 bg-white "
       >
         <div className="flex">
           <Input
             value={input}
             onChange={handleInputChange}
-            placeholder="Ask any question..."
+            placeholder="Ask any question relevant to this document..."
             className="w-full"
           />
           <Button className="bg-blue-600 ml-2">

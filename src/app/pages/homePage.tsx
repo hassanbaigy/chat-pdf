@@ -16,8 +16,13 @@ export default function HomePage() {
           <h1 className="mr-3 text-5xl font-semibold">Chat with any PDF</h1>
           <UserButton afterSignOutUrl="/" />
         </div>
+
         <div className="flex mt-2">
-          {isAuthenticated && <Button>Go to Chats</Button>}
+          {isAuthenticated && (
+            <Link href="/chat">
+              <Button>Go to Chats</Button>
+            </Link>
+          )}
         </div>
 
         <p className="max-w-xl mt-1 text-lg text-slate-600">

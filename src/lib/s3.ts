@@ -18,7 +18,7 @@ export async function uploadToS3(file: File) {
       "uploads/" + Date.now().toString() + file.name.replace(" ", "-");
 
     const params = {
-      Bucket: process.env.NEXT_PUBLIC_AWS_S3_BUCKET_NAME!,
+      Bucket: process?.env.NEXT_PUBLIC_AWS_S3_BUCKET_NAME!,
       Key: file_key,
       Body: file,
     };
@@ -47,5 +47,5 @@ export async function uploadToS3(file: File) {
 }
 
 export function getS3Url(file_key: string) {
-  return `https://${process.env.AWS_S3_BUCKET_NAME}.s3.ap-southeast-1.amazonaws.com/${file_key}`;
+  return `https://${process.env.NEXT_PUBLIC_AWS_S3_BUCKET_NAME}.s3.ap-southeast-1.amazonaws.com/${file_key}`;
 }

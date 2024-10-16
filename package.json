@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^5.1.0",
+    "@clerk/themes": "^2.1.36",
     "@langchain/community": "^0.2.3",
     "@neondatabase/serverless": "^0.9.3",
     "@pinecone-database/doc-splitter": "^0.0.1",

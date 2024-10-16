@@ -11,9 +11,9 @@ const Loader = ({ flags, text }: Props) => {
     <>
       {flags?.includes(true) ? (
         <>
-          <Loader2 className="h-10 w-10 text-blue-500 animate-spin" />
+          <Loader2 className="h-10 w-10 text-teal-400 animate-spin" />
           {!!text ? (
-            <p className="mt-2 text-sm text-slate-400">{text}</p>
+            <p className="mt-2 text-sm text-slate-400 font-ubuntu">{text}</p>
           ) : (
             <></>
           )}

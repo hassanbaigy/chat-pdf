@@ -76,12 +76,14 @@ const FileUpload = () => {
       >
         <input {...getInputProps()} />
         <Fragment>
-          <Inbox className="w-10 h-10 text-blue-500" />
+          <Inbox className="w-10 h-10 text-teal-400" />
           <Loader
             flags={[uploading, isLoading]}
             text=" Spilling Tea to GPT..."
           />
-          <p className="text-sm text-slate-400">Drop PDF Here</p>
+          {!uploading ? (
+            <p className="text-sm text-slate-400">Drop PDF Here</p>
+          ) : null}
         </Fragment>
       </div>
     </div>

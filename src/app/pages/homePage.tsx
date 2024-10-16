@@ -6,49 +6,53 @@ import { chats } from "@/lib/db/schema";
 import { UserButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import { eq } from "drizzle-orm";
-import { ArrowRight, LogIn } from "lucide-react";
+import { MessageSquareMore, LogIn } from "lucide-react";
+
 import Link from "next/link";
 
 export default async function HomePage() {
   const { userId } = auth();
   const isAuthenticated = !!userId;
   let firstChat;
-  if (userId) {
-    firstChat = await db.select().from(chats).where(eq(chats.userId, userId));
+
+  if (!!userId) {
+    firstChat = await db?.select().from(chats).where(eq(chats.userId, userId));
     if (firstChat) {
       firstChat = firstChat[0];
     }
   }
   return (
     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-      <div className="flex flex-col items-center text-center">
-        <div className="flex items-center">
-          <h1 className="mr-3 text-5xl font-semibold">Chat PDF</h1>
-          <UserButton afterSignOutUrl="/" />
+      <div className="flex flex-col items-center text-center justify-center">
+        <div className="flex justify-center items-center mb-4">
+          <h1 className="mr-3 text-6xl font-sanista font-extrabold italic text-teal-300">
+            Chat PDF
+          </h1>
+          <div className="pt-4">
+            <UserButton afterSignOutUrl="/" />
+          </div>
         </div>
-
-        <div className="flex mt-2">
-          {isAuthenticated && (
-            <Link href={`/chat/${firstChat?.id}`}>
-              <Button>
-                Go to Chats <ArrowRight className="ml-2" />
-              </Button>
-            </Link>
-          )}
-        </div>
-
-        <p className="max-w-xl mt-1 text-lg text-slate-600">
-          Joins students, reaserchers and professionals to instantly answer
-          questions and understand PDFs with AI
-        </p>
         <div className="w-full mt-4">
           {isAuthenticated ? (
             <FileUpload />
           ) : (
             <Link href="/sign-in">
-              <Button>
+              <Button className="font-ubuntu">
                 Login to get Started
                 <LogIn className="w-4" />
+              </Button>
+            </Link>
+          )}
+        </div>
+        <p className="max-w-xl font-ubuntu text-lg text-slate-300 mt-2">
+          Joins students, reaserchers and professionals to instantly answer
+          questions and understand PDFs with AI
+        </p>
+        <div className="flex mt-2">
+          {isAuthenticated && (
+            <Link href={`/chat/${firstChat?.id}`}>
+              <Button className="font-extrabold font-ubuntu text-xl flex justify-center text-slate-300 items-center py-8">
+                MY CHATS <MessageSquareMore size="20" className="ml-2" />
               </Button>
             </Link>
           )}

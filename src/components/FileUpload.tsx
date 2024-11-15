@@ -1,16 +1,17 @@
 "use client";
+import React, { Fragment, useState } from "react";
 import { uploadToS3 } from "@/lib/s3";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { Inbox } from "lucide-react";
-import React, { Fragment, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { toast } from "react-hot-toast";
 import Loader from "./ui/Loader";
 import { useRouter } from "next/navigation";
-type Props = {};
+import Renderer from "@/utils/Renderer";
+import { constants } from "@/utils/constants";
 
-const FileUpload = () => {
+const FileUpload = ({ isLimitReached = false }) => {
   const router = useRouter();
   const [uploading, setUploading] = useState(false);
 
@@ -66,26 +67,39 @@ const FileUpload = () => {
       }
     },
   });
+
   return (
     <div className="p-2 bg-white rounded-2xl">
-      <div
-        {...getRootProps({
-          className:
-            "border-dashed border-2 rounded-xl cursor-pointer bg-gray-50 py-8 flex justify-cneter items-center flex-col",
-        })}
-      >
-        <input {...getInputProps()} />
-        <Fragment>
-          <Inbox className="w-10 h-10 text-teal-400" />
-          <Loader
-            flags={[uploading, isLoading]}
-            text=" Spilling Tea to GPT..."
-          />
-          {!uploading ? (
-            <p className="text-sm text-slate-400">Drop PDF Here</p>
-          ) : null}
-        </Fragment>
-      </div>
+      <Renderer flags={[!isLimitReached]}>
+        <div
+          {...getRootProps({
+            className:
+              "border-dashed border-2 rounded-xl cursor-pointer bg-gray-50 py-8 flex justify-cneter items-center flex-col",
+          })}
+        >
+          <input {...getInputProps()} />
+          <Fragment>
+            <Inbox className="w-10 h-10 text-teal-400" />
+            <Loader
+              flags={[uploading, isLoading]}
+              text=" Spilling Tea to GPT..."
+            />
+            {
+              <Renderer flags={[!uploading]}>
+                <p className="text-sm text-slate-400">Drop PDF Here</p>
+              </Renderer>
+            }
+          </Fragment>
+        </div>
+      </Renderer>
+      <Renderer flags={[isLimitReached]}>
+        <div className="border-dashed border-2 rounded-xl bg-gray-50 py-8 flex justify-cneter items-center flex-col">
+          <p className="text-sm text-slate-400">
+            {"Free chats limit is reached 🥲. Maximum chats allowed are "}
+            {constants?.maxFreeChats}
+          </p>
+        </div>
+      </Renderer>
     </div>
   );
 };

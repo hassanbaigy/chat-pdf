@@ -23,9 +23,9 @@ export default function RootLayout({
         baseTheme: [neobrutalism],
         variables: { colorPrimary: "black" },
         elements: {
-          userButtonAvatarBox: "w-14 h-14", // Custom width and height
-          userButtonPopoverCard: "bg-blue-100", // Custom background for the popover card
-          userButtonPopoverActionButton: "text-teal-500", // Custom text color for action buttons
+          userButtonAvatarBox: "w-14 h-14",
+          userButtonPopoverCard: "bg-blue-100",
+          userButtonPopoverActionButton: "text-teal-500",
         },
         signIn: {
           baseTheme: [neobrutalism],
